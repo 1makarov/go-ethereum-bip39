@@ -2,14 +2,15 @@ package bip39
 
 import (
 	"crypto/ecdsa"
+	"crypto/sha512"
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcutil/hdkeychain"
 	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/tyler-smith/go-bip39"
+	"golang.org/x/crypto/pbkdf2"
 )
 
 func NewSeed(mnemonic, password string) []byte {
-	return bip39.NewSeed(mnemonic, password)
+	return pbkdf2.Key([]byte(mnemonic), []byte("mnemonic"+password), 2048, 64, sha512.New)
 }
 
 func MustParseDerivationPath(path string) (accounts.DerivationPath, error) {
