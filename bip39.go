@@ -3,8 +3,9 @@ package bip39
 import (
 	"crypto/ecdsa"
 	"crypto/sha512"
+
 	"github.com/btcsuite/btcd/chaincfg"
-	"github.com/btcsuite/btcutil/hdkeychain"
+	"github.com/btcsuite/btcd/btcutil/hdkeychain"
 	"github.com/ethereum/go-ethereum/accounts"
 	"golang.org/x/crypto/pbkdf2"
 )
